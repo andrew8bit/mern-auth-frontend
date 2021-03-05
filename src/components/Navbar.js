@@ -17,22 +17,25 @@ const Navbar = (props) => {
                         <li className="nav-item">
                             <NavLink className="nav-link"  to="/about">About</NavLink>
                         </li>
-                    {props.isAuth ? 
+                    {props.isAuth ?
+                    <> 
                         <li className="nav-item">
                             <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
                         </li>    
-                    &&
                         <li className="nav-item">
                             <span onClick={props.handleLogout} className='nav-link logout-link'>Logout</span>
-                        </li>  
-                    :   
+                        </li> 
+                    </> 
+                    :  
+                    <> 
                         <li className="nav-item">
                             <NavLink className="nav-link" exact to="/signup">Sign Up</NavLink>
-                        </li>    
-                    &&
+                        </li>
+                    
                         <li className="nav-item">
                             <NavLink className="nav-link" exact to="/login">Log In</NavLink>
                         </li> 
+                    </>
                     }
                     </ul>
                 </div>

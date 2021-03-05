@@ -28,28 +28,25 @@ const Signup = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // at the begining of a submit function 
+        e.preventDefault(); // at the beginning of a submit function
         // make sure password and confirm password are equal
-        // password length > 8 characters
-        // password === confirmPassword && password.length >= 8 ? 
+        // password length >= 8 characters
         if (password === confirmPassword && password.length >= 8) {
-            const newUser = { name, email, password } 
+            const newUser = { name, email, password };
             axios.post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
             .then(response => {
-                console.log('==========> Yay, new user');
+                console.log('===> Yay, new user');
                 console.log(response);
                 setRedirect(true);
             })
-            .catch(error => console.log('=================> Error in Signup', error));
+            .catch(error => console.log('===> Error in Signup', error));
         } else {
-            if (password !== confirmPassword) return alert('Password don\'t match');
-            alert('Password is not 8 characters in length')
-
+            if (password !== confirmPassword) return alert('Passwords don\'t match');
+            alert('Password needs to be at least 8 characters. Please try again.');
         }
     }
 
-
-    if (redirect) return <Redirect to="/login" /> // you can have them redirect to profile (your choice)
+    if (redirect) return <Redirect to="/login" />// you can have them redirect to profile (your choice)
     
 
     return (
@@ -67,14 +64,14 @@ const Signup = () => {
                             <input type="email" email="email" value={email} onChange={handleEmail} className='form-control'></input>
                         </div>
                         <div className='form-group'>
-                            <label htmlFor="passwprd">Password</label>
-                            <input type="password" name="passord" value={name} onChange={handlePassword} className='form-control'></input>
+                            <label htmlFor="password">Password</label>
+                            <input type="password" name="password" value={password} onChange={handlePassword} className='form-control'></input>
                         </div>
                         <div className='form-group'>
                             <label htmlFor="confirmPassword">Confirm Password</label>
-                            <input type="password" name="confirmPassword" value={name} onChange={handleConfirmPassword} className='form-control'></input>
+                            <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className='form-control'></input>
                         </div>
-                        <button type="Submit" className='btn btn-primary float-right'> Submit</button>
+                        <button type="submit" className='btn btn-primary float-right'>Submit</button>
                     </form>
                 </div>
             </div>
